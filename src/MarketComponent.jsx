@@ -41,6 +41,15 @@ export default function CryptoScreener() {
         }
     }
 
+    function formatPrice(price){
+        if(price < 0.01){
+            return price.toFixed(8)
+        }
+        else{
+            return price.toFixed(2)
+        }
+    }
+
 
 
     useEffect(() =>{
@@ -111,9 +120,9 @@ export default function CryptoScreener() {
                                 <td><img src={coin.image} alt="coin.name" style={{width: "32px", height: "32px"}} /></td>
                                 <td>{coin.name}</td>
                                 <td>{coin.symbol.toUpperCase()}</td>
-                                <td>${formatPrice(coin.current_price).toLocaleString()}</td>
-                                <td>${coin.market_cap.toLocaleString()}</td>
-                                <td>${coin.total_volume.toLocaleString()}</td>
+                                <td>$ {formatPrice(coin.current_price)}</td>
+                                <td>$ {coin.market_cap.toLocaleString()}</td>
+                                <td>$ {coin.total_volume.toLocaleString()}</td>
                             </tr>
                         ))
                     }
