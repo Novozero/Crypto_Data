@@ -101,7 +101,7 @@ export default function CryptoScreener() {
                     <th>Symbol</th>
                     <th>Price</th>
                     <th>Market Cap</th>
-                    <th>Volume</th>
+                    <th>Volume 24h</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -111,7 +111,7 @@ export default function CryptoScreener() {
                                 <td><img src={coin.image} alt="coin.name" style={{width: "32px", height: "32px"}} /></td>
                                 <td>{coin.name}</td>
                                 <td>{coin.symbol.toUpperCase()}</td>
-                                <td>${coin.current_price.toLocaleString()}</td>
+                                <td>${formatPrice(coin.current_price).toLocaleString()}</td>
                                 <td>${coin.market_cap.toLocaleString()}</td>
                                 <td>${coin.total_volume.toLocaleString()}</td>
                             </tr>
