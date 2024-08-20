@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/button'
 import DropdownMenu from 'react-bootstrap/esm/DropdownMenu'
 import DropdownItem from 'react-bootstrap/esm/DropdownItem'
 import Dropdown from 'react-bootstrap/Dropdown'
+import PercentButton from './PercentButton'
 
 
 export default function CryptoScreener() {
@@ -13,9 +14,12 @@ export default function CryptoScreener() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [perPage, setPerPage] = useState(50)
+    const [togglePercent, setTogglePercent] = useState(false)
     
     const [filtered, setFiltered] = useState([])
     const [inputField, setInputField] = useState("")
+
+    
 
     function searchOnClick() {
         if (inputField === "") {
@@ -41,15 +45,47 @@ export default function CryptoScreener() {
         }
     }
 
-    function formatPrice(price){
-        if(price < 0.01){
+    function fixDecimal(price){
+        if( price !== null && price !== undefined && !isNaN(price)){
+           if (Math.abs(price) >= 0.01) {
+            return price.toFixed(2)
+           }
+           else{
             return price.toFixed(8)
+           }
         }
         else{
-            return price.toFixed(2)
+            return 'N/A'
         }
     }
 
+    function changeInPercent(changeIn24H, basePrice){
+            let sum = (changeIn24H / basePrice) * 100
+            if (sum < 0.01) {
+                return Math.abs(sum.toFixed(2))
+            }
+            else{
+                return Math.abs(sum)
+            }
+    }
+
+function priceStyle(price_change_24h){
+    if(price_change_24h>0){
+       return {
+        style: {color: "green"}, 
+        text: `▲ ${fixDecimal(price_change_24h)}`}
+    }
+    else{
+        return {
+            style: {color: "red"},
+            text:  `▼ ${fixDecimal(price_change_24h)}`
+        }
+    }
+}
+
+function changeToPercent(){
+    setTogglePercent(toggle => !toggle)
+}
 
 
     useEffect(() =>{
@@ -94,11 +130,14 @@ export default function CryptoScreener() {
         <Dropdown onSelect={(eventKey) => setPerPage(Number(eventKey))} className='mx-3 mb-3'>
             <Dropdown.Toggle variant="primary">Filter Top Coins</Dropdown.Toggle>
             <DropdownMenu>
-                <DropdownItem eventKey={50}>Top 50</DropdownItem>
-                <DropdownItem eventKey={25}>Top 25</DropdownItem>
-                <DropdownItem eventKey={10}>Top 10</DropdownItem>
                 <DropdownItem eventKey={5}>Top 5</DropdownItem>
+                <DropdownItem eventKey={10}>Top 10</DropdownItem>
+                <DropdownItem eventKey={25}>Top 25</DropdownItem>
+                <DropdownItem eventKey={50}>Top 50</DropdownItem>
+                <DropdownItem eventKey={100}>Top 100</DropdownItem>
+                <DropdownItem eventKey={200}>Top 200</DropdownItem>
             </DropdownMenu>
+            <PercentButton onClick={changeToPercent} percentToDollar={togglePercent}/>
         </Dropdown>
 
             <div className='mx-3 border border-grey rounded-2 border-2'>  
@@ -109,8 +148,9 @@ export default function CryptoScreener() {
                     <th>Name</th>
                     <th>Symbol</th>
                     <th>Price</th>
+                    <th>24H Change</th>
                     <th>Market Cap</th>
-                    <th>Volume 24h</th>
+                    <th>Volume</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -120,9 +160,10 @@ export default function CryptoScreener() {
                                 <td><img src={coin.image} alt="coin.name" style={{width: "32px", height: "32px"}} /></td>
                                 <td>{coin.name}</td>
                                 <td>{coin.symbol.toUpperCase()}</td>
-                                <td>$ {formatPrice(coin.current_price)}</td>
-                                <td>$ {coin.market_cap.toLocaleString()}</td>
-                                <td>$ {coin.total_volume.toLocaleString()}</td>
+                                <td>${fixDecimal(coin.current_price)}</td>
+                                <td style={priceStyle(coin.price_change_24h).style}>{togglePercent ? `${priceStyle(coin.price_change_24h).text}$`: `${priceStyle(changeInPercent(coin.price_change_24h, coin.current_price)).text}%`}</td>
+                                <td>${coin.market_cap.toLocaleString()}</td>
+                                <td>${coin.total_volume.toLocaleString()}</td>
                             </tr>
                         ))
                     }
