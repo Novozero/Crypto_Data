@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import Table from 'react-bootstrap/table'
 import axios from 'axios'
-import Button from 'react-bootstrap/button'
 import DropdownMenu from 'react-bootstrap/esm/DropdownMenu'
 import DropdownItem from 'react-bootstrap/esm/DropdownItem'
 import Dropdown from 'react-bootstrap/Dropdown'
 import PercentButton from './PercentButton'
+import Header from './Header'
 
 
 export default function CryptoScreener() {
@@ -120,13 +120,7 @@ function changeToPercent(){
     return(
         <>
         <div>
-            <h1 className='display-2 bg-light-subtle d-flex justify-content-center'>Crypto Market</h1>
-            <div className='d-flex justify-content-center my-4'>
-                <label name="searchField">
-            <input type="text" value={inputField} onChange={e => setInputField(e.target.value)} onKeyDown={handleKeyDown}/>
-                </label>
-            <Button id='searchButton' type="button" className='btn btn-primary btn-sm' onClick={searchOnClick} >Search</Button>
-            </div>
+        <Header inputField={inputField} setInputField={setInputField} onKeyDown={handleKeyDown} searchOnClick={searchOnClick}/>
         <Dropdown onSelect={(eventKey) => setPerPage(Number(eventKey))} className='mx-3 mb-3'>
             <Dropdown.Toggle variant="primary">Filter Top Coins</Dropdown.Toggle>
             <DropdownMenu>
