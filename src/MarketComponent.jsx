@@ -69,22 +69,22 @@ export default function CryptoScreener() {
             }
     }
 
-function priceStyle(price_change_24h){
-    if(price_change_24h>0){
+    function priceStyle(changeValue){
+    if(changeValue>0){
        return {
         style: {color: "green"}, 
-        text: `▲ ${fixDecimal(price_change_24h)}`}
-    }
-    else{
+        text: `▲ ${fixDecimal(changeValue)}`}
+        }
+        else{
         return {
             style: {color: "red"},
-            text:  `▼ ${fixDecimal(price_change_24h)}`
+            text:  `▼ ${fixDecimal(changeValue)}`
         }
     }
-}
+    }
 
-function changeToPercent(){
-    setTogglePercent(toggle => !toggle)
+    function changeToPercent(){
+        setTogglePercent(toggle => !toggle)
 }
 
 
@@ -155,7 +155,7 @@ function changeToPercent(){
                                 <td>{coin.name}</td>
                                 <td>{coin.symbol.toUpperCase()}</td>
                                 <td>${fixDecimal(coin.current_price)}</td>
-                                <td style={priceStyle(coin.price_change_24h).style}>{togglePercent ? `${priceStyle(coin.price_change_24h).text}$`: `${priceStyle(changeInPercent(coin.price_change_24h, coin.current_price)).text}%`}</td>
+                                <td style={togglePercent ? priceStyle(changeInPercent(coin.price_change_24h, coin.current_price)).style : priceStyle(coin.price_change_24h).style}>{togglePercent ? `${priceStyle(changeInPercent(coin.price_change_24h, coin.current_price)).text}%` : `${priceStyle(coin.price_change_24h).text}$`}</td>
                                 <td>${coin.market_cap.toLocaleString()}</td>
                                 <td>${coin.total_volume.toLocaleString()}</td>
                             </tr>
