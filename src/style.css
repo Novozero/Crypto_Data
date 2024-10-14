@@ -1,0 +1,98 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#h1Header {
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+}
+
+#searchButton {
+    background-color: rgba(50, 9, 91);
+    border: rgb(84, 84, 84) solid 0.1px;
+    transition: all 0.3s ease-in-out;
+}
+
+#backgroundContainer {
+    background-color: #0f0028;
+    min-height: 100%;
+    min-width: 100%;
+    z-index: -1;
+}
+
+#input {
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    filter: brightness(0.9);
+}
+
+#input:focus {
+    border-color: #f6f6f6;
+    box-shadow: 0 0 15px 10px rgba(128, 0, 128, 0.8), 0 0 50px rgba(128, 0, 128, 0.6);
+}
+
+#input::placeholder {
+    color: #aaa;
+    opacity: 0.8;
+}
+
+#searchButton:hover {
+    box-shadow: 0 0 15px 5px rgba(128, 0, 128, 0.8), 0 0 50px rgba(128, 0, 128, 0.6);
+}
+
+#table {
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: rgba(50, 9, 91);
+    color: white;
+    width: 75%;
+    max-height: 100vh;
+    text-align: center;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 255, 0.42);
+    margin-bottom: 50px;
+}
+
+#table td {
+    padding: 10px;
+}
+
+#table th {
+    padding: 10px 0;
+}
+
+.dropDownClass {
+    background-color: rgba(50, 9, 91) !important;
+    border: rgb(84, 84, 84) solid 0.1px !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.dropDownClass:hover {
+    box-shadow: 0 0 15px 5px rgba(128, 0, 128, 0.8), 0 0 50px rgba(128, 0, 128, 0.6);
+}
+
+/*MediaQuery*/
+
+@media (max-width: 768px) {
+    .hideMobile{
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    #backgroundContainer{
+    background-color: #0f0028;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background-size: cover;
+    }
+}
