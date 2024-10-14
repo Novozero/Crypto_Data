@@ -1,13 +1,4 @@
 
-  function handleKeyDown(event) {
-    if (event.key === "Enter") {
-      searchOnClick();
-    }
-    if (event.key === "Escape") {
-      setInputField("");
-    }
-  }
-
   /**Fix Decimal on current price */
 
   function fixDecimal(price) {
@@ -34,13 +25,13 @@
   function priceStyle(changeValue) {
     if (changeValue > 0) {
       return {
-        style: { color: '#66bb6a' },
-        text: `▲ ${fixDecimal(changeValue)}`,
+        style: { color: '#66bb6a', whiteSpace: 'nowrap' },
+        text: `\u00A0▲ ${fixDecimal(changeValue)}`,
       };
     } else {
       return {
-        style: { color: '#ef5350' },
-        text: `▼ ${fixDecimal(changeValue)}`,
+        style: { color: '#ef5350', whiteSpace: 'nowrap' },
+        text: `\u00A0▼ ${fixDecimal(changeValue)}`,
       };
     }
   }
@@ -59,4 +50,4 @@
     }
   }
 
-  export {priceStyle, changeInPercent, fixDecimal, handleKeyDown, fixMarketCapVolume}
+  export {priceStyle, changeInPercent, fixDecimal, fixMarketCapVolume}

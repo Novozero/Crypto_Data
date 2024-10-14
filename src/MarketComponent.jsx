@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import DropdownMenu from 'react-bootstrap/esm/DropdownMenu';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 import Dropdown from 'react-bootstrap/Dropdown';
 import PercentButton from './PercentButton';
 import Header from './Header';
+import handleKeyDown from './Header';
+
 import {
-  handleKeyDown,
   fixDecimal,
   changeInPercent,
   priceStyle,
@@ -76,7 +76,7 @@ export default function CryptoScreener() {
 
   return (
     <>
-      <div id="backgroundContainer">
+      <div id="backgroundContainer"></div>
         <div id="mainContainer">
           <Header
             inputField={inputField}
@@ -104,7 +104,7 @@ export default function CryptoScreener() {
             </Dropdown>
           </div>
 
-          <div className='d-flex justify-content-center h-auto mh-100'>
+          <div className='d-flex justify-content-center'>
             <table id='table'>
               <thead>
                 <tr>
@@ -124,9 +124,9 @@ export default function CryptoScreener() {
                       <td className='d-flex justify-content-center align-items-center'>
                         <span className="me-2 nowrap">{index + 1}.</span>
                         <img
+                          className='coinImg'
                           src={coin.image}
                           alt={coin.name}
-                          style={{ width: '32px', height: '32px'}}
                           />
                       </td>
                       <td className='hideMobile'>{coin.name}</td>
@@ -162,7 +162,6 @@ export default function CryptoScreener() {
             </table>
           </div>
         </div>
-      </div>
     </>
   );
 }
