@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://novozero.github.io/Crypto_Data",
+  "homepage": "https://novozero.github.io/Crypto_Data/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
