@@ -110,7 +110,7 @@ export default function CryptoScreener() {
                 <tr>
                   <th>Icon</th>
                   <th className='hideMobile'>Name</th>
-                  <th>Symbol</th>
+                  <th className='hideMobile'>Symbol</th>
                   <th>Price</th>
                   <th>24H Change</th>
                   <th className='hideMobile'>Market Cap</th>
@@ -121,16 +121,31 @@ export default function CryptoScreener() {
                 {(filtered.length > 0 ? filtered : cryptoData).map(
                   (coin, index) => (
                     <tr key={coin.id}>
-                      <td className='d-flex justify-content-center align-items-center'>
-                        <span className="me-2 nowrap">{index + 1}.</span>
-                        <img
-                          className='coinImg'
-                          src={coin.image}
-                          alt={coin.name}
-                          />
+                      <td>
+                        <div className='container'>
+                          <div className='row align-items-center justify-content-start '>
+                          <div className='col-auto'>
+                            <div className='d-flex me-1'>
+                            <span>{index + 1}.</span>
+                            </div>
+                            </div>
+                            <div className='col p-0'>
+                              <div className='d-flex justify-content-center'>
+                              <div className='d-flex flex-column align-items-center'>
+                              <img
+                                  className='coinImg'
+                                  src={coin.image}
+                                  alt={coin.name}
+                              />
+                              <span className='hideDesktop'>{coin.symbol.toUpperCase()}</span>
+                              </div>
+                              </div>
+                            </div>
+                            </div>
+                        </div>
                       </td>
                       <td className='hideMobile'>{coin.name}</td>
-                      <td>{coin.symbol.toUpperCase()}</td>
+                      <td className='hideMobile'>{coin.symbol.toUpperCase()}</td>
                       <td>${fixDecimal(coin.current_price)}</td>
                       <td
                         style={

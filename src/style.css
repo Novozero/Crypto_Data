@@ -24,7 +24,7 @@
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-color: #0f0028;
+    background-color: #1e0546;
     background-size: cover;
     background-position: center;
 }
@@ -69,6 +69,7 @@
     text-align: center;
     box-shadow: 0 0 20px 10px rgba(0, 0, 255, 0.42);
     padding: 0 1rem 1rem 1rem;
+    margin-bottom: 3rem;
 }
 
 #table td {
@@ -89,6 +90,10 @@
     box-shadow: 0 0 15px 5px rgba(128, 0, 128, 0.8), 0 0 50px rgba(128, 0, 128, 0.6);
 }
 
+.hideDesktop{
+    display: none;
+}
+
 /*MediaQuery*/
 
 @media (max-width: 768px) {
@@ -99,13 +104,13 @@
 
 @media (max-width: 768px) {
     #backgroundContainer{
-    position: fixed; /* oder absolute, abhängig von deinem Layout */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-color: #0f0028;
+    background-color: #1e0546;
     background-size: cover;
     background-position: center;
     }
@@ -133,5 +138,9 @@
 @media (max-width: 768px) {
     thead{
         font-size: small;
+    }
+
+    .hideDesktop{
+        display: contents;
     }
 }
