@@ -6,7 +6,6 @@ import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 import Dropdown from 'react-bootstrap/Dropdown';
 import PercentButton from './PercentButton';
 import Header from './Header';
-import DarkModeButton from './DarkModeButton';
 
 export default function CryptoScreener() {
     // State variables for handling crypto data and UI states
