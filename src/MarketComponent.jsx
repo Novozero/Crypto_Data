@@ -132,6 +132,7 @@ export default function CryptoScreener() {
 
     return (
         <>
+            <div id='background'></div>
             <div>
                 <Header 
                     searchOnClick={searchOnClick} 
@@ -149,10 +150,9 @@ export default function CryptoScreener() {
                         <DropdownItem eventKey={5}>Top 5</DropdownItem>
                     </DropdownMenu>
                     <PercentButton onClick={changeToPercent} percentToDollar={togglePercent} />
-                    <DarkModeButton />
                 </Dropdown>
                 
-                <div className='mx-3 border border-grey rounded-2 border-2'>  
+                <div className='m-3'>  
                     <Table striped hover responsive="sm">
                         <thead>
                             <tr>
@@ -161,8 +161,8 @@ export default function CryptoScreener() {
                                 <th>Symbol</th>
                                 <th>Price</th>
                                 <th>24H Change</th>
-                                <th>Market Cap</th>
-                                <th>Volume</th>
+                                <th className='hideMobile'>Market Cap</th>
+                                <th className='hideMobile'>Volume</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -180,8 +180,8 @@ export default function CryptoScreener() {
                                             : `${priceStyle(changeInPercent(coin.price_change_24h, coin.current_price)).text}%`
                                         }
                                     </td>
-                                    <td>${coin.market_cap.toLocaleString()}</td>
-                                    <td>${coin.total_volume.toLocaleString()}</td>
+                                    <td className='hideMobile'>${coin.market_cap.toLocaleString()}</td>
+                                    <td className='hideMobile'>${coin.total_volume.toLocaleString()}</td>
                                 </tr>
                             ))}
                         </tbody>
