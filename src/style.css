@@ -22,11 +22,6 @@
     color: rgba(255, 255, 255, 0.706);
 }
 
-#searchButton {
-    border: rgb(84, 84, 84) solid 0.1px;
-    transition: all 0.3s ease-in-out;
-}
-
 #input {
     border-radius: 25px;
     border: 1px solid #ccc;
@@ -56,21 +51,21 @@
     border-radius: 10px;
     overflow: hidden;
     text-align: center;
-    box-shadow: 0 0 20px 10px rgba(0, 0, 255, 0.42);
+    box-shadow: 0 0 20px 5px rgba(0, 0, 255, 0.42);
     opacity: 0.9;
 }
 
 #table td {
     padding: 10px;
+    background-color: transparent;
+    color: white;
+    border: none;
 }
 
 #table th {
     padding: 10px 0;
-}
-
-.dropDownClass {
-    border: rgb(84, 84, 84) solid 0.1px !important;
-    transition: all 0.3s ease-in-out;
+    background-color: transparent;
+    color: white;
 }
 
 .hideDesktop{

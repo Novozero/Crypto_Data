@@ -141,7 +141,7 @@ export default function CryptoScreener() {
                     handleKeyDown={handleKeyDown} 
                 />
                 
-                <Dropdown onSelect={(eventKey) => setPerPage(Number(eventKey))} className='mx-3 mb-3'>
+                <Dropdown onSelect={(eventKey) => setPerPage(Number(eventKey))} className='ms-5'>
                     <Dropdown.Toggle variant="primary">Filter Top Coins</Dropdown.Toggle>
                     <DropdownMenu>
                         <DropdownItem eventKey={50}>Top 50</DropdownItem>
@@ -149,11 +149,11 @@ export default function CryptoScreener() {
                         <DropdownItem eventKey={10}>Top 10</DropdownItem>
                         <DropdownItem eventKey={5}>Top 5</DropdownItem>
                     </DropdownMenu>
-                    <PercentButton onClick={changeToPercent} percentToDollar={togglePercent} />
+                    <PercentButton onClick={changeToPercent} togglePercent={togglePercent}/>
                 </Dropdown>
                 
-                <div className='m-3'>  
-                    <Table striped hover responsive="sm">
+                <div className='mx-5 mt-2'>  
+                    <Table striped hover responsive="sm" id="table">
                         <thead>
                             <tr>
                                 <th>Icon</th>
@@ -176,8 +176,8 @@ export default function CryptoScreener() {
                                     <td>${fixDecimal(coin.current_price)}</td>
                                     <td style={priceStyle(coin.price_change_24h).style}>
                                         {togglePercent 
-                                            ? `${priceStyle(coin.price_change_24h).text}$` 
-                                            : `${priceStyle(changeInPercent(coin.price_change_24h, coin.current_price)).text}%`
+                                            ? `${priceStyle(changeInPercent(coin.price_change_24h, coin.current_price)).text}%`
+                                            : `${priceStyle(coin.price_change_24h).text}$`
                                         }
                                     </td>
                                     <td className='hideMobile'>${coin.market_cap.toLocaleString()}</td>
